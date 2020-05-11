@@ -102,7 +102,7 @@
         </el-table>
 
         <!-- 添加角色对话框 -->
-        <el-dialog title="编辑角色信息"
+        <el-dialog title="添加角色信息"
                    :visible.sync="dialogFormVisibleAdd"
                    :modal="true">
             <el-form :model="form">
@@ -125,6 +125,7 @@
                            @click="addRole()">确 定</el-button>
             </div>
         </el-dialog>
+
         <!-- 编辑角色对话框 -->
         <el-dialog title="编辑角色信息"
                    :visible.sync="dialogFormVisibleEdit"
@@ -211,7 +212,6 @@ export default {
             arrtemp1: [],
             arrcheck: [], //已经被选中的角色的id
             currRoleId: -1 //当前角色的Id，用在提交修改中
-
         };
     },
     // beforeCreate表示在组件（home）实例化之前执行
