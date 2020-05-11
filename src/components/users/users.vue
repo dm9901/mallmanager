@@ -285,7 +285,7 @@ export default {
             if (res.data.meta.status === 200) {
                 this.options = res.data.data;
                 console.log(this.options);
-                // this.$message.success(res.data.meta.msg)
+                this.$message.success(res.data.meta.msg)
             } else {
                 this.$message.error(res.data.meta.msg);
             }
@@ -410,18 +410,19 @@ export default {
                 `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`
             );
             // console.log(res);
+            // console.log(res.data.meta.msg)
             // 根据返回数据结构，取出需要的数据
-            const {
-                data: { users, total, pagenum },
-                meta: { msg, status }
-            } = res.data;
+            // const {
+            //     data: { users, total, pagenum },
+            //     meta: { msg, status }
+            // } = res.data;
 
             // 根据取出的数据，渲染至页面
-            if (status === 200) {
-                this.total = total;
-                this.userList = users;
-                this.pagenum = pagenum;
-                if (total === 0) {
+            if (res.data.meta.status === 200) {
+                this.total = res.data.data.total;
+                this.userList = res.data.data.users;
+                this.pagenum = res.data.data.pagenum;
+                if (res.data.data.total === 0) {
                     this.$message.success(
                         "执行成功！但未找到和 [" + this.query + "] 相关的数据"
                     );
@@ -429,7 +430,7 @@ export default {
                     // this.$message.success(msg);
                 }
             } else {
-                this.$message.error(msg);
+                this.$message.error(res.data.meta.msg);
             }
         }
     }
